@@ -4,13 +4,13 @@ import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Getter
-@ToString
-public class Topping {
+@Setter
+public class Drink {
     private String name;
     private int calories;
     private double price;
 
-    public String toString() { return name + calories + price; }
+    @Override
+    public String toString() { return name + calories + price;}
 }

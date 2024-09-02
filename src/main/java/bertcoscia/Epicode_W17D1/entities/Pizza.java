@@ -1,10 +1,8 @@
 package bertcoscia.Epicode_W17D1.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +20,7 @@ public class Pizza {
         this.name = name;
         this.calories = calories;
         this.price = price;
+        this.toppings = new ArrayList<>();
         Collections.addAll(this.toppings, toppings);
     }
 
@@ -29,4 +28,13 @@ public class Pizza {
         this.toppings.add(topping);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder toppingsBuilder = new StringBuilder();
+        this.toppings.forEach(topping -> toppingsBuilder.append(topping.getName()).append(", "));
+        if (!toppingsBuilder.isEmpty()) {
+            toppingsBuilder.setLength(toppingsBuilder.length() - 2);
+        }
+        return name + " (" + toppingsBuilder + ") " + calories + " kcal, €" + price;
+    }
 }
