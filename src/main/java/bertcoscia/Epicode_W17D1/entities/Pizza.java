@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 public class Pizza {
-    protected String name;
-    protected List<Topping> toppings;
-    protected int calories;
-    protected double price;
+    private String name;
+    private List<Topping> toppings;
+    private int calories;
+    private double price;
 
     public Pizza(String name, int calories, double price, Topping... toppings) {
         this.name = name;
