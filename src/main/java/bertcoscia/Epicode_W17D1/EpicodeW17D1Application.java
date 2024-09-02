@@ -1,5 +1,6 @@
 package bertcoscia.Epicode_W17D1;
 
+import bertcoscia.Epicode_W17D1.entities.Menu;
 import bertcoscia.Epicode_W17D1.entities.Pizza;
 import bertcoscia.Epicode_W17D1.entities.Topping;
 import org.springframework.boot.SpringApplication;
@@ -14,8 +15,8 @@ public class EpicodeW17D1Application {
 
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(EpicodeW17D1Application.class);
 
-		Pizza margherita = (Pizza) context.getBean("margherita");
-		System.out.println(margherita);
+		Menu menu = (Menu) context.getBean("menu");
+		System.out.println(menu);
 	}
 
 }
