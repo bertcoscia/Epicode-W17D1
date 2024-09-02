@@ -20,24 +20,35 @@ public class Menu {
 
     @Override
     public String toString() {
-        // Intestazioni e separatori
-        String header = String.format("%-25s %-10s %s", "Name", "Calories", "Price");
-        String separator = "-".repeat(header.length()); // Separatore per chiarezza
+        String header = String.format("%-30s %-10s %s", "Name", "Calories", "Price");
+        String separator = "-".repeat(header.length());
 
-        // Stringhe per pizze, topping e bevande
         String pizzasStr = pizzas.stream()
-                .map(pizza -> String.format("%-25s %-10d $%.2f", pizza.getName(), pizza.getCalories(), pizza.getPrice()))
+                .map(pizza -> {
+                    String toppingsList = pizza.getToppings().stream()
+                            .map(Topping::getName)
+                            .collect(Collectors.joining(", "));
+                    return String.format("%-30s %-10d $%.2f",
+                            pizza.getName() + " (" + toppingsList + ")",
+                            pizza.getCalories(),
+                            pizza.getPrice());
+                })
                 .collect(Collectors.joining("\n"));
 
         String toppingsStr = toppings.stream()
-                .map(topping -> String.format("%-25s %-10d $%.2f", topping.getName(), topping.getCalories(), topping.getPrice()))
+                .map(topping -> String.format("%-30s %-10d $%.2f",
+                        topping.getName(),
+                        topping.getCalories(),
+                        topping.getPrice()))
                 .collect(Collectors.joining("\n"));
 
         String drinksStr = drinks.stream()
-                .map(drink -> String.format("%-25s %-10d $%.2f", drink.getName(), drink.getCalories(), drink.getPrice()))
+                .map(drink -> String.format("%-30s %-10d $%.2f",
+                        drink.getName(),
+                        drink.getCalories(),
+                        drink.getPrice()))
                 .collect(Collectors.joining("\n"));
 
-        // Combinare tutto in una stringa finale
         return header + "\n" + separator + "\n" +
                 "Pizzas:\n" + pizzasStr + "\n\n" +
                 "Toppings:\n" + toppingsStr + "\n\n" +
